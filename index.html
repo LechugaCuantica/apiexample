@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificaciones Rojas de Interpol</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans">
+
+    <!-- Header -->
+    <header class="bg-red-700 shadow-lg border-b border-red-800 py-6 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="bg-white p-2 rounded-full text-red-700 font-bold text-xl">
+                    🚨
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold tracking-wide">INTERPOL</h1>
+                    <p class="text-red-200 text-xs">Notificaciones Rojas (Red Notices)</p>
+                </div>
+            </div>
+            <div id="total-badge"
+                class="bg-red-900/60 text-red-100 text-sm font-semibold px-4 py-1.5 rounded-full border border-red-500/30">
+                Cargando total...
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full">
+
+        <!-- Estado de Carga -->
+        <div id="loading" class="flex flex-col items-center justify-center py-20 space-y-4">
+            <div class="animate-spin rounded-full h-12 w-12 border-4 border-red-500 border-t-transparent"></div>
+            <p class="text-slate-400 text-sm">Consultando registros internacionales...</p>
+        </div>
+
+        <!-- Estado de Error -->
+        <div id="error"
+            class="hidden bg-red-950/50 border border-red-800 text-red-200 p-6 rounded-xl text-center max-w-lg mx-auto">
+            <p class="font-semibold text-lg mb-1">Error al conectar con la API</p>
+            <p class="text-sm text-red-300" id="error-message">No se pudieron obtener los datos.</p>
+            <button onclick="fetchNotices(currentPage)"
+                class="mt-4 px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg text-sm transition">
+                Reintentar
+            </button>
+        </div>
+
+        <!-- Grid de Tarjetas -->
+        <div id="notices-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 hidden">
+            <!-- Las tarjetas se insertan dinámicamente -->
+        </div>
+
+    </main>
+
+    <!-- Paginación -->
+    <footer class="bg-slate-800/80 border-t border-slate-700/60 py-4 px-4 mt-auto">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <button id="btn-prev" onclick="changePage(-1)" disabled
+                class="px-4 py-2 bg-slate-700 hover:bg-slate-600 disabled:opacity-40 disabled:cursor-not-allowed text-white text-sm font-medium rounded-lg transition">
+                ← Anterior
+            </button>
+
+            <span id="page-info" class="text-xs sm:text-sm text-slate-400">
+                Página <strong id="current-page" class="text-slate-200">1</strong>
+            </span>
+
+            <button id="btn-next" onclick="changePage(1)" disabled
+                class="px-4 py-2 bg-slate-700 hover:bg-slate-600 disabled:opacity-40 disabled:cursor-not-allowed text-white text-sm font-medium rounded-lg transition">
+                Siguiente →
+            </button>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
