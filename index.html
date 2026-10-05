@@ -32,6 +32,17 @@
 
     <!-- Contenido Principal -->
     <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full">
+        <div class="flex items-center gap-3 mb-6 flex-wrap bg-slate-800/50 p-3 rounded-xl border border-slate-800">
+            <span class="text-xs text-slate-400 font-medium uppercase tracking-wider">Filtrar por país:</span>
+            <button id="btn-all" onclick="setNationalityFilter('')"
+                class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-red-600 text-white shadow transition">
+                Todos
+            </button>
+            <button id="btn-co" onclick="setNationalityFilter('CO')"
+                class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition flex items-center gap-2">
+                <span>🇨🇴</span> Colombia (CO)
+            </button>
+        </div>
 
         <!-- Estado de Carga -->
         <div id="loading" class="flex flex-col items-center justify-center py-20 space-y-4">
